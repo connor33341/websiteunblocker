@@ -6,31 +6,33 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://cdn.jsdelivr.net/gh/FogNetwork/ABC/index.js"></script>
+<script src="editor.js" type="module"></script>
 </head>
 <body>
 <center>
 
 <h1 class="title">Website Unblocker</h1>
-<textarea id="code" spellcheck="false">
-//Creates new ABC
-var page = new ABC({
-    "type": "blank", //Blank, blob, or overwrite
-    "url": "https://example.com" //Any url
-})
-//Set the type
-page.setType("blank")
-//Set the url
-page.setUrl("https://example.com")
-//Get iframe code
-console.log(page.getCode())
-//Open page
-page.open()</textarea>
+<div class="editor-area">
+
+</div>
 
 <br>
 
-<button class="run" onclick="eval(document.getElementById('code').value)">Run</button>
+<button class="run" onclick="Run()">Run</button>
 </center>
-
+<script type="module">
+    import {EditorController, SetUpEditor} from "editor.js"
+    let textArea
+    let ec
+    function Setup(){
+        textArea = SetUpEditor()
+        ec = EditorController(textArea)
+    }
+    Setup()
+    function Run(){
+        eval(ec.ReturnText())
+    }
+</script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
